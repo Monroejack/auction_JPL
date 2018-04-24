@@ -33,8 +33,13 @@ RSpec.describe Auction, :type => :model do
   end
 
   describe "Associations" do
-    it { should have_one(:buyer) }
-    it { should have_one(:seller) }
+    it 'has one buyer' do
+      expect(Auction.reflect_on_association(:buyer).macro).to eq(:has_one)
+    end
+    it 'has one seller' do
+      expect(Auction.reflect_on_association(:seller).macro).to eq(:has_one)
+    end
+
     it { should have_many(:bids) }
   end
 end
